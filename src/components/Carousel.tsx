@@ -197,6 +197,10 @@ export default class Carousel extends React.Component<Props, State> {
             this.setupCarousel();
         }
 
+        if (prevProps.children !== this.props.children && this.state.initialized) {
+            this.updateSizes();
+        }
+
         if (prevState.swiping && !this.state.swiping) {
             // We stopped swiping, ensure we are heading to the new/current slide and not stuck
             this.resetPosition();

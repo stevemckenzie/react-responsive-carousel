@@ -372,6 +372,11 @@ export default class Carousel extends React.Component<Props, State> {
             return;
         }
 
+        const childrenLength = Children.count(this.props.children);
+        if (childrenLength < 2) {
+            return;
+        }
+
         const { axis } = this.props;
         const isHorizontal = axis === 'horizontal';
         const keyNames = {
@@ -470,9 +475,13 @@ export default class Carousel extends React.Component<Props, State> {
     };
 
     onSwipeMove = (delta: { x: number; y: number }, event: React.TouchEvent) => {
+        const childrenLength = Children.count(this.props.children);
+        if (childrenLength < 2) {
+            return;
+        }
+
         this.props.onSwipeMove(event);
         const isHorizontal = this.props.axis === 'horizontal';
-        const childrenLength = Children.count(this.props.children);
 
         const initialBoundry = 0;
 
